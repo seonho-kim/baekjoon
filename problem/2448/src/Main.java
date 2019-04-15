@@ -23,12 +23,11 @@ public class Main {
 
 		map = Arrays.copyOf(map, K);
 
-
-		for (int i = 1; 3 * binarySqure(i) <= K; ++i) {
+		for (int i = 1; 3 * binarySqure(i) <= K; i++) {
 			print(i, map);
 		}
 
-		for (int i = 0; i < K; ++i) {
+		for (int i = 0; i < K; i++) {
 			sb.append(map[i] + "\n");
 		}
 		
