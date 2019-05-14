@@ -10,7 +10,7 @@ import java.util.StringTokenizer;
 public class Main {
 
 	static int V, E;
-	static int[] uf = new int[1000];
+	static int[] uf = new int[10000];
 	static Edge[] list = new Edge[100000];
 	public static void main(String[] args) throws IOException {
 		System.setIn(new FileInputStream("./src/input.txt"));
@@ -31,16 +31,11 @@ public class Main {
 			list[i] = new Edge(u-1, v-1, w);
 		}
 		
-		uf = new int[V + 1];
-		for (int i = 1; i <= V; i++) {
-			uf[i] = i;
-		}
-		
 		Arrays.sort(list, 0, E);
 		
 		int result = 0, cnt = 0;
 		Arrays.fill(uf, -1);
-		for (int i = 0; i < list.length; i++) {
+		for (int i = 0; ; i++) {
 			if (union(list[i].u, list[i].v)) {
 				result += list[i].w;
 				if (++cnt == V-1) break;
