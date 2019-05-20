@@ -4,33 +4,32 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.Arrays;
+import java.util.StringTokenizer;
 
 public class Main {
 
 	static int N;
-	static final int MAX = 1000001;
+	static final int MAX = 1001;
+	static int[] card = new int[MAX];
 	static int[] d = new int[MAX];
-	static int result = 0;
 	public static void main(String[] args) throws IOException {
 		System.setIn(new FileInputStream("./src/input.txt"));
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		StringTokenizer st;
 		
 		N = Integer.parseInt(br.readLine());
-
-		Arrays.fill(d, Integer.MAX_VALUE);
-		d[1] = 0;
+		
+		st = new StringTokenizer(br.readLine(), " ");
+		for (int i = 1; i <= N; i++) {
+			card[i] = Integer.parseInt(st.nextToken());
+		}
+		
+		d[1] = card[1];
 		for (int i = 2; i <= N; i++) {
-			if (i % 3 == 0) {
-				d[i] = Math.min(d[i], d[i/3] + 1);
+			for (int j = 1; j <= i; j++) {
+				d[i] = Math.max(d[i], d[i-j]+card[j]);
 			}
-			
-			if (i % 2 == 0) {
-				d[i] = Math.min(d[i], d[i/2] + 1);
-			}
-			
-			d[i] = Math.min(d[i], d[i-1] + 1);
 		}
 		
 		bw.write(d[N] + "");
