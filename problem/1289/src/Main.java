@@ -13,7 +13,6 @@ public class Main {
 	static final int MAX = 100001;
 	static final int MOD = 1000000007;
 	static ArrayList<Node>[] tree = new ArrayList[MAX];
-	static long[] temp = new long[MAX];
 	static boolean[] visited = new boolean[MAX];
 	static long answer = 0;
 	public static void main(String[] args) throws IOException {
