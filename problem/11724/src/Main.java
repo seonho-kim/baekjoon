@@ -7,6 +7,7 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
+import java.util.Stack;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -38,44 +39,45 @@ public class Main {
 			graph[to].add(from);
 		}
 		
-		Deque<Integer> q = new ArrayDeque<Integer>();
+//		Deque<Integer> q = new ArrayDeque<Integer>();
+//		for (int i = 1; i <= N; i++) {
+//			if (!visited[i]) {
+//				q.offer(i);
+//				visited[i] = true;
+//				answer++;
+//			} else continue;
+//			
+//			while(!q.isEmpty()) {
+//				int cur = q.poll();
+//				
+//				for (int next : graph[cur]) {
+//					if (!visited[next]) {
+//						q.offer(next);
+//						visited[next] = true;
+//					}
+//				}
+//			}
+//		}
+		Stack<Integer> s = new Stack<Integer>();
 		for (int i = 1; i <= N; i++) {
 			if (!visited[i]) {
-				q.offer(i);
+				s.push(i);
 				visited[i] = true;
 				answer++;
 			} else continue;
-			
-			while(!q.isEmpty()) {
-				int cur = q.poll();
+						
+			while(!s.isEmpty()) {
+				int cur = s.pop();
 				
 				for (int next : graph[cur]) {
+					if (next == cur) continue;
 					if (!visited[next]) {
-						q.offer(next);
+						s.push(next);
 						visited[next] = true;
 					}
 				}
 			}
 		}
-//		Stack<Integer> s = new Stack<Integer>();
-//		for (int i = 1; i <= N; i++) {
-//			if (!visited[i]) {
-//				s.push(i);
-//				answer++;
-//			} else continue;
-//						
-//			while(!s.isEmpty()) {
-//				int cur = s.pop();
-//				visited[cur] = true;
-//				
-//				for (int next : graph[cur]) {
-//					if (next == cur) continue;
-//					if (!visited[next]) {
-//						s.push(next);
-//					}
-//				}
-//			}
-//		}
 		bw.write(answer + " ");
 		bw.flush();
 	}
