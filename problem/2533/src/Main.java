@@ -11,9 +11,9 @@ public class Main {
 
 	static final int MAXN = 1000001;
 	static int N;
-	static boolean[] visited;// = new boolean[MAXN];
-	static int[][] dp;// = new int[MAXN][2];
-	static ArrayList<Integer>[] list;// = new ArrayList[MAXN];
+	static boolean[] visited = new boolean[MAXN];
+	static int[][] d = new int[MAXN][2];
+	static ArrayList<Integer>[] list = new ArrayList[MAXN];
 	
 	public static void main(String[] args) throws IOException {
 		System.setIn(new FileInputStream("./src/input.txt"));
@@ -22,9 +22,6 @@ public class Main {
 		StringTokenizer st;
 		
 		N = Integer.parseInt(br.readLine());
-		visited = new boolean[N+1];
-		dp = new int[N+1][2];
-		list = new ArrayList[N+1];
 		
 		for (int i = 1; i <= N; i++)
 			list[i] = new ArrayList<Integer>();
@@ -39,19 +36,20 @@ public class Main {
 		
 		int s = 1;
 		dfs(s);
-		bw.write(Math.min(dp[s][0], dp[s][1]) + "\n");
+		bw.write(Math.min(d[s][0], d[s][1]) + "\n");
 		bw.flush();
 	}
+	
 	public static void dfs(int node) {
 		visited[node] = true;
-		dp[node][0] = 0;
-		dp[node][1] = 1;
+		d[node][0] = 0;
+		d[node][1] = 1;
 		
 		for (int next : list[node]) {
 			if (!visited[next]) {
 				dfs(next);
-				dp[node][0] += dp[next][1];
-				dp[node][1] += Math.min(dp[next][0], dp[next][1]);
+				d[node][0] += d[next][1];
+				d[node][1] += Math.min(d[next][0], d[next][1]);
 			}
 		}
 	}
