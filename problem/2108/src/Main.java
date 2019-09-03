@@ -15,7 +15,7 @@ public class Main {
 	static int[] visited = new int[8001];
 	static int[] answer = new int[4];
 	
-	static float sum;
+	static double sum;
 	static int max = -4000, min = 4000;
 	public static void main(String[] args) throws IOException {
 		System.setIn(new FileInputStream("./src/input.txt"));
@@ -36,7 +36,7 @@ public class Main {
 			min = Math.min(min, array[i]);
 		}
 		
-        float avg = sum / N;
+        double avg = sum / N;
         if (avg >= 0) {
         	answer[0] = (int)(avg + 0.5);
         } else {
@@ -64,7 +64,7 @@ public class Main {
 		answer[3] = max - min;
 		
 		for (int i = 0; i < 4; i ++) {
-			bw.write(Integer.valueOf(answer[i]) + "\n");
+			bw.write(answer[i] + "\n");
 		}				
 		bw.flush();
 	}
