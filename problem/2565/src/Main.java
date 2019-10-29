@@ -18,7 +18,7 @@ public class Main {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer st;
          
-        N = Integer.parseInt(br.readLine().replace(" ", ""));
+        N = Integer.parseInt(br.readLine());
          
         for (int i = 1; i <= N; i++) {
             st = new StringTokenizer(br.readLine(), " ");
